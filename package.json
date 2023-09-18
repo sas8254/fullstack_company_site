@@ -1,0 +1,11 @@
+{
+  "name": "fullstack_company_site",
+  "version": "1.0.0",
+  "description": "A fullstack website for company of my friend.",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "author": "sas",
+  "license": "MIT"
+}

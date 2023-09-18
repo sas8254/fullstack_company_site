@@ -1,3 +1,14 @@
+#folders
+front_end/audio/
+front_end/css/
+front_end/homepages/
+front_end/images/
+front_end/include/
+front_end/js/
+front_end/plugins/
+front_end/video/
+front_end/webfonts/
+
 # Logs
 logs
 *.log
