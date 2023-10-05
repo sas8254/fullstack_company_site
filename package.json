@@ -4,8 +4,16 @@
   "description": "A fullstack website for company of my friend.",
   "main": "app.js",
   "scripts": {
-    "test": "npm run dev"
+    "dev": "nodemon app.js"
   },
   "author": "sas",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.5.4",
+    "path": "^0.12.7"
+  }
 }
