@@ -20,6 +20,9 @@ app.use(express.static(path.join(__dirname, "files/productImages")));
 app.get("/", (req, res) => {
   res.render("index");
 });
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
 
 const PORT = process.env.PORT || 3200;
 app.listen(PORT, () => {
