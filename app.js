@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
+const productRoutes = require("./routes/productRoutes");
+
 const mongoose = require("mongoose");
 mongoose
   .connect("mongodb://127.0.0.1:27017/product-portfolio")
@@ -11,11 +13,14 @@ mongoose
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "files/productImages")));
+app.use(express.static(path.join(__dirname, "uploads/images")));
+app.use(express.static(path.join(__dirname, "uploads/pdfs")));
+
+app.use("/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");

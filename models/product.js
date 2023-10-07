@@ -6,21 +6,25 @@ const ProductSchema = new Schema(
     image: {
       type: String,
       required: true,
-      trim: true, // Remove leading/trailing whitespace
+      trim: true,
     },
     title: {
       type: String,
       required: true,
       trim: true,
     },
-    subtitle: String, // Optional field
+    subtitle: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     pdfFile: {
       type: String,
       required: true,
     },
   },
   {
-    timestamps: true, // Add timestamps to the schema
+    timestamps: true,
   }
 );
 

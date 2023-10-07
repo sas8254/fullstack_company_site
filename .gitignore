@@ -9,6 +9,7 @@ front_end/plugins/
 front_end/video/
 front_end/webfonts/
 public/images/
+uploads/
 
 # Logs
 logs
