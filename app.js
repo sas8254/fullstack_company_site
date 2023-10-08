@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
 app.get("/contact", (req, res) => {
   res.render("contact");
 });
+app.get("/product", (req, res) => {
+  res.render("products");
+});
+
 
 const PORT = process.env.PORT || 3200;
 app.listen(PORT, () => {
