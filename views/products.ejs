@@ -1,4 +1,113 @@
 <%- include('head') %>
-<h1>hi</h1>
+<!-- Inspiro Slider -->
+<div
+  id="slider"
+  class="inspiro-slider slider-fullscreen dots-creative"
+  data-fade="true"
+>
+  <!-- Slide  -->
+  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
+  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
+  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
+  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
+  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
+  <!-- end: Slide  -->
+</div>
+<!--end: Inspiro Slider -->
+<div class="heading-text text-center mt-5">
+  <h2 class="fw-light">Products</h2>
+</div>
+<div class="row">
+  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xs-6">
+    <div class="heading-text text-center mt-5">
+      <h4 class="fw-light">Companies</h4>
+    </div>
+    <!-- Accordion -->
+    <div class="accordion sidebar sticky-sidebar">
+      <div class="ac-item">
+        <h5 class="ac-title">Layout and design options</h5>
+        <div class="ac-content">
+          <li><a href="header-topbar.html">Light</a></li>
+          <li><a href="header-topbar-dark.html">Dark</a></li>
+          <li><a href="header-topbar-transparent.html">Transparent</a></li>
+          <li><a href="header-topbar-colored.html">Colored</a></li>
+          <li><a href="header-topbar-fullwidth.html">Fullwidth</a></li>
+        </div>
+      </div>
+      <div class="ac-item">
+        <h5 class="ac-title">Layout and design options</h5>
+        <div class="ac-content">
+          <li><a href="header-topbar.html">Light</a></li>
+          <li><a href="header-topbar-dark.html">Dark</a></li>
+          <li><a href="header-topbar-transparent.html">Transparent</a></li>
+          <li><a href="header-topbar-colored.html">Colored</a></li>
+          <li><a href="header-topbar-fullwidth.html">Fullwidth</a></li>
+        </div>
+      </div>
+    </div>
+    <!-- end: Accordion -->
+  </div>
+  <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6 col-xs-6">
+    <div class="heading-text text-center mt-5">
+      <h4 class="fw-light">Products</h4>
+      <div class="row">
+        <% for(let product of products){ %>
+        <div class="card xl-3 lg-4 sm-6 ms-3" style="width: 18rem">
+          <img
+            src="<%= product.image %>"
+            class="card-img-top align-self center"
+            style="width: 16rem; height: 13rem; object-fit: contain"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%=product.title%></h5>
+            <p class="card-text"><%=product.subtitle%></p>
+            <a href="<%=product.pdfFile %>" class="btn btn-primary"
+              >Learn more</a
+            >
+            <a
+              href="/products/<%=product._id%>/edit"
+              class="card-link btn btn-info"
+              >Edit</a
+            >
+            <form
+              class="d-inline"
+              action="/products/<%=product._id%>?_method=DELETE"
+              method="post"
+            >
+              <button class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%-include('footer') %>
-     
+<style>
+  .ac-content > li > a {
+    font-weight: 500;
+    color: var(--bs-dark);
+  }
+  .ac-content > li > a:hover {
+    color: var(--bs-primary);
+  }
+
+  .ac-content {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .card-body > .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-body > .card-text {
+    font-size: 1rem;
+  }
+</style>

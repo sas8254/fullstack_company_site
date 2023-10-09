@@ -22,19 +22,19 @@ const deletePdf = (fileUrl) => {
 };
 
 exports.addProduct = async (req, res) => {
+  console.log(req.body);
   try {
-    const { title, subtitle } = req.body;
+    const { title, subtitle, category, subCategory } = req.body;
     const newProduct = new Product({
       image: req.files["image"][0].filename,
       title,
       subtitle,
+      category,
+      subCategory,
       pdfFile: req.files["pdfFile"][0].filename,
     });
-    const product = await newProduct.save();
-    res.status(201).json({
-      message: "Product added successfully",
-      product,
-    });
+    await newProduct.save();
+    res.redirect("/products");
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",
@@ -59,10 +59,20 @@ exports.getProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const product = await Product.find({});
-    res.status(200).json({
-      product,
+    const products = await Product.find({});
+    res.render("products", { products });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred",
+      error,
     });
+  }
+};
+
+exports.getEditForm = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.render("editProduct", { product });
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",
@@ -73,7 +83,8 @@ exports.getAllProducts = async (req, res) => {
 
 exports.editProduct = async (req, res) => {
   try {
-    let { title, subtitle } = req.body;
+    // return res.send(req.body);
+    let { title, subtitle, category, subCategory } = req.body;
     const foundProduct = await Product.findById(req.params.Id);
     let image, pdfFile;
     if (req.files["image"]) {
@@ -95,12 +106,12 @@ exports.editProduct = async (req, res) => {
         subtitle,
         image,
         pdfFile,
+        category,
+        subCategory,
       },
       { new: true }
     );
-    res.status(200).json({
-      product,
-    });
+    res.redirect("/products");
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",
@@ -122,7 +133,7 @@ exports.deleteProduct = async (req, res) => {
     if (removedType === null) {
       return res.status(500).json("No product found!");
     }
-    res.status(200).json("Product Deleted Successfully");
+    res.redirect("/products");
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",

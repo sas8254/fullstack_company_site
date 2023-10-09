@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "uploads/images")));
 app.use(express.static(path.join(__dirname, "uploads/pdfs")));
+app.use(methodOverride("_method"));
 
 app.use("/products", productRoutes);
 

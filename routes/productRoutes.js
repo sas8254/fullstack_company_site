@@ -25,6 +25,12 @@ router.post(
   productController.addProduct
 );
 
+router.get("/add", (req, res) => {
+  res.render("addProduct");
+});
+
+router.get("/:id/edit", productController.getEditForm);
+
 router.get("/", productController.getAllProducts);
 
 router.get("/:Id", productController.getProduct);

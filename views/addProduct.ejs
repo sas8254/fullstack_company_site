@@ -1,0 +1,80 @@
+<%- include('head') %>
+<div class="row">
+  <div class="col-lg-8 mx-auto">
+    <h2>Add Product</h2>
+    <form action="/products" method="post" enctype="multipart/form-data">
+      <div class="form-group row">
+        <label for="title" class="col-2 col-form-label">Title</label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="title"
+            id="title"
+            name="title"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="category" class="col-2 col-form-label">Category</label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="category"
+            id="category"
+            name="category"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="subCategory" class="col-2 col-form-label">sub-category</label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="sub-category"
+            id="subCategory"
+            name="subCategory"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="subtitle" class="col-2 col-form-label">Subitle</label>
+        <div class="col-10">
+          <textarea
+            class="form-control"
+            id="subtitle"
+            placeholder="subtitle"
+            rows="2"
+            name="subtitle"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label" for="image">Select Image</label>
+        <div class="col-10">
+          <input
+            type="file"
+            class="form-control-file"
+            id="image"
+            name="image"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label" for="pdf">Select Pdf</label>
+        <div class="col-10">
+          <input
+            type="file"
+            class="form-control-file"
+            id="pdf"
+            name="pdfFile"
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mb-5">Add Product</button>
+    </form>
+  </div>
+</div>
+<%-include('footer') %>
