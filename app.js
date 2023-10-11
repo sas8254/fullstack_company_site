@@ -4,6 +4,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const productRoutes = require("./routes/productRoutes");
+const subcategoryRoutes = require("./routes/subcategoryRoutes");
 
 const mongoose = require("mongoose");
 mongoose
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, "uploads/pdfs")));
 app.use(methodOverride("_method"));
 
 app.use("/products", productRoutes);
+app.use("/subcategories", subcategoryRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
