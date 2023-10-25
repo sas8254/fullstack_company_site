@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const productRoutes = require("./routes/productRoutes");
 const subcategoryRoutes = require("./routes/subcategoryRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const mongoose = require("mongoose");
 mongoose
@@ -24,6 +25,7 @@ app.use(methodOverride("_method"));
 
 app.use("/products", productRoutes);
 app.use("/subcategories", subcategoryRoutes);
+app.use("/categories", categoryRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
