@@ -43,4 +43,6 @@ router.patch(
 
 router.delete("/:Id", productController.deleteProduct);
 
+router.get("/subcat/:Id", productController.getAllProductsOfSubcategory);
+
 module.exports = router;

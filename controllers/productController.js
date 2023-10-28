@@ -22,15 +22,15 @@ const deletePdf = (fileUrl) => {
 };
 
 exports.addProduct = async (req, res) => {
-  console.log(req.body);
+  // return res.send(req.body);
   try {
-    const { title, subtitle, category, subCategory } = req.body;
+    const { title, subtitle, category, subcategory } = req.body;
     const newProduct = new Product({
       image: req.files["image"][0].filename,
       title,
       subtitle,
       category,
-      subCategory,
+      subcategory,
       pdfFile: req.files["pdfFile"][0].filename,
     });
     await newProduct.save();
@@ -60,6 +60,21 @@ exports.getProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find({});
+    res.render("products", { products });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred",
+      error,
+    });
+  }
+};
+
+exports.getAllProductsOfSubcategory = async (req, res) => {
+  try {
+    const products = await Product.find({
+      subcategory: req.params.Id,
+    });
+    // return res.json({ products });
     res.render("products", { products });
   } catch (error) {
     res.status(500).json({

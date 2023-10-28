@@ -11,6 +11,7 @@ exports.getAllCategories = async (req, res) => {
   }
 };
 
+
 exports.getCategoryById = async (req, res) => {
   try {
     const category = await Category.findById(req.params.id).populate(
@@ -52,10 +53,11 @@ exports.updateCategory = async (req, res) => {
 exports.deleteCategory = async (req, res) => {
   try {
     const category = await Category.findByIdAndRemove(req.params.id);
-    await Subcategory.deleteMany({ _id: { $in: category.subcategories } });
     if (!category) {
       return res.status(404).json({ error: "Category not found" });
     }
+    await Subcategory.deleteMany({ _id: { $in: category.subcategories } });
+
     res.json({ message: "Category deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: "Error deleting the category" });

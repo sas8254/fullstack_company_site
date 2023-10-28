@@ -25,13 +25,13 @@ exports.getSubcategoryById = async (req, res) => {
 
 exports.createSubcategory = async (req, res) => {
   try {
-    const { subcategory, categoryId } = req.body;
+    const { name, categoryId } = req.body;
 
-    const newSubcategory = new Subcategory({
-      subcategory,
+    const subcategory = new Subcategory({
+      name,
       category: categoryId,
     });
-    const savedSubcategory = await newSubcategory.save();
+    const savedSubcategory = await subcategory.save();
     const category = await Category.findById(categoryId);
     category.subcategories.push(savedSubcategory._id);
     await category.save();
@@ -46,7 +46,7 @@ exports.updateSubcategory = async (req, res) => {
   try {
     const subcategory = await Subcategory.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      { name: req.body.name },
       {
         new: true,
       }

@@ -8,8 +8,9 @@ front_end/js/
 front_end/plugins/
 front_end/video/
 front_end/webfonts/
-public/images/
-uploads/
+uploads/images/*
+uploads/pdfs/*
+
 
 # Logs
 logs

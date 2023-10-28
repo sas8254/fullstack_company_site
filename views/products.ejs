@@ -1,19 +1,4 @@
 <%- include('head') %>
-<!-- Inspiro Slider -->
-<div
-  id="slider"
-  class="inspiro-slider slider-fullscreen dots-creative"
-  data-fade="true"
->
-  <!-- Slide  -->
-  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
-  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
-  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
-  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
-  <div class="slide kenburns" data-bg-image="images/notgeneric_bg3.jpg"></div>
-  <!-- end: Slide  -->
-</div>
-<!--end: Inspiro Slider -->
 <div class="heading-text text-center mt-5">
   <h2 class="fw-light">Products</h2>
 </div>
@@ -54,7 +39,7 @@
         <% for(let product of products){ %>
         <div class="card xl-3 lg-4 sm-6 ms-3" style="width: 18rem">
           <img
-            src="<%= product.image %>"
+            src="/<%= product.image %>"
             class="card-img-top align-self center"
             style="width: 16rem; height: 13rem; object-fit: contain"
             alt="..."
