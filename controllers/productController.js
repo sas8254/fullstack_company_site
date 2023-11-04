@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const Category = require("../models/Category");
 const fs = require("fs");
 
 const deleteImage = (fileUrl) => {
@@ -59,8 +60,9 @@ exports.getProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
   try {
+    const categories = await Category.find().populate("subcategories");
     const products = await Product.find({});
-    res.render("products", { products });
+    res.render("products", { products, categories });
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",

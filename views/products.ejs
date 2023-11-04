@@ -9,26 +9,16 @@
     </div>
     <!-- Accordion -->
     <div class="accordion sidebar sticky-sidebar">
+      <% for(let category of categories) {%>
       <div class="ac-item">
-        <h5 class="ac-title">Layout and design options</h5>
+        <h5 class="ac-title"><%= category.name %></h5>
         <div class="ac-content">
-          <li><a href="header-topbar.html">Light</a></li>
-          <li><a href="header-topbar-dark.html">Dark</a></li>
-          <li><a href="header-topbar-transparent.html">Transparent</a></li>
-          <li><a href="header-topbar-colored.html">Colored</a></li>
-          <li><a href="header-topbar-fullwidth.html">Fullwidth</a></li>
+          <% for(let subcategory of category.subcategories){ %>
+            <li><a href="#"><%=subcategory.name %></a></li>
+          <% } %>
         </div>
       </div>
-      <div class="ac-item">
-        <h5 class="ac-title">Layout and design options</h5>
-        <div class="ac-content">
-          <li><a href="header-topbar.html">Light</a></li>
-          <li><a href="header-topbar-dark.html">Dark</a></li>
-          <li><a href="header-topbar-transparent.html">Transparent</a></li>
-          <li><a href="header-topbar-colored.html">Colored</a></li>
-          <li><a href="header-topbar-fullwidth.html">Fullwidth</a></li>
-        </div>
-      </div>
+      <% } %>
     </div>
     <!-- end: Accordion -->
   </div>
