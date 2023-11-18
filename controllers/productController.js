@@ -73,11 +73,12 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getAllProductsOfSubcategory = async (req, res) => {
   try {
+    const categories = await Category.find().populate("subcategories");
     const products = await Product.find({
       subcategory: req.params.Id,
     });
     // return res.json({ products });
-    res.render("products", { products });
+    res.render("products", { products, categories });
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",
@@ -90,6 +91,18 @@ exports.getEditForm = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     res.render("editProduct", { product });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred",
+      error,
+    });
+  }
+};
+
+exports.getAddForm = async (req, res) => {
+  try {
+    const categories = await Category.find().populate("subcategories");
+    res.render("addProduct", { categories });
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",
