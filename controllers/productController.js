@@ -89,8 +89,9 @@ exports.getAllProductsOfSubcategory = async (req, res) => {
 
 exports.getEditForm = async (req, res) => {
   try {
+    const categories = await Category.find().populate("subcategories");
     const product = await Product.findById(req.params.id);
-    res.render("editProduct", { product });
+    res.render("editProduct", { product, categories });
   } catch (error) {
     res.status(500).json({
       message: "An error occurred",
@@ -114,7 +115,7 @@ exports.getAddForm = async (req, res) => {
 exports.editProduct = async (req, res) => {
   try {
     // return res.send(req.body);
-    let { title, subtitle, category, subCategory } = req.body;
+    let { title, subtitle, category, subcategory } = req.body;
     const foundProduct = await Product.findById(req.params.Id);
     let image, pdfFile;
     if (req.files["image"]) {
@@ -137,7 +138,7 @@ exports.editProduct = async (req, res) => {
         image,
         pdfFile,
         category,
-        subCategory,
+        subcategory,
       },
       { new: true }
     );

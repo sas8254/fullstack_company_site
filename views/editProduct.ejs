@@ -21,31 +21,38 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="category" class="col-2 col-form-label">Category</label>
+        <label for="category" class="col-2 col-form-label"
+          >Select Category</label
+        >
         <div class="col-10">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="category"
-            id="category"
-            name="category"
-            value="<%=product.category%>"
-          />
+          <select class="form-select" name="category" id="category" required>
+            <option value="#">Select Category</option>
+            <% if(categories){%> <% for(let category of categories){ %>
+            <option value="<%=category._id%>">
+              <%=category.name%>
+            </option>
+            <% } %> <% } %>
+          </select>
         </div>
       </div>
       <div class="form-group row">
-        <label for="subCategory" class="col-2 col-form-label"
-          >sub-category</label
+        <label for="subcategory" class="col-2 col-form-label"
+          >Select Sub-Category</label
         >
         <div class="col-10">
-          <input
-            class="form-control"
-            type="text"
+          <select
+            class="form-select"
             placeholder="sub-category"
             id="subcategory"
             name="subcategory"
-            value="<%=product.subcategory%>"
-          />
+            required
+          >
+            <% if(typeof subcategories !== 'undefined'){%>
+            <% for(let subcategory of subcategories){ %>
+            <option value="<%=subcategory._id%>"><%=subcategory.name%></option>
+            <% } %> 
+            <% } %>
+          </select>
         </div>
       </div>
       <div class="form-group row">
@@ -89,3 +96,25 @@
   </div>
 </div>
 <%-include('footer') %>
+<script>
+  const category = document.getElementById("category");
+  const subcategoryDropdown = document.getElementById("subcategory");
+
+  category.addEventListener("change", function () {
+    let categoryId = this.value;
+
+    fetch(`/categories/${categoryId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        subcategoryDropdown.innerHTML = "";
+
+        // Populate subcategory dropdown with fetched data
+        data.subcategories.forEach((subcategory) => {
+          const option = document.createElement("option");
+          option.value = subcategory._id;
+          option.textContent = subcategory.name;
+          subcategoryDropdown.add(option);
+        });
+      });
+  });
+</script>
