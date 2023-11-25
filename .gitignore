@@ -1,13 +1,13 @@
 #folders
-front_end/audio/
-front_end/css/
-front_end/homepages/
-front_end/images/
-front_end/include/
-front_end/js/
-front_end/plugins/
-front_end/video/
-front_end/webfonts/
+front_ends/audio/
+front_ends/css/
+front_ends/homepages/
+front_ends/images/
+front_ends/include/
+front_ends/js/
+front_ends/plugins/
+front_ends/video/
+front_ends/webfonts/
 uploads/images/*
 uploads/pdfs/*
 

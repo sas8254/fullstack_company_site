@@ -14,7 +14,11 @@
         <h5 class="ac-title"><%= category.name %></h5>
         <div class="ac-content">
           <% for(let subcategory of category.subcategories){ %>
-            <li><a href="/products/subcat/<%=subcategory._id%>"><%=subcategory.name %></a></li>
+          <li>
+            <a href="/products/subcat/<%=subcategory._id%>"
+              ><%=subcategory.name %></a
+            >
+          </li>
           <% } %>
         </div>
       </div>
@@ -37,9 +41,14 @@
           <div class="card-body">
             <h5 class="card-title"><%=product.title%></h5>
             <p class="card-text"><%=product.subtitle%></p>
-            <a href="/<%=product.pdfFile%>" target="_blank" class="btn btn-primary"
+            <a
+              href="/<%=product.pdfFile%>"
+              target="_blank"
+              class="btn btn-primary"
               >Learn more</a
             >
+            <% if(admin){ %>
+
             <a
               href="/products/<%=product._id%>/edit"
               class="card-link btn btn-info"
@@ -52,6 +61,7 @@
             >
               <button class="btn btn-danger">Delete</button>
             </form>
+            <% } %>
           </div>
         </div>
         <% } %>

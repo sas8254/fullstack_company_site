@@ -1,0 +1,46 @@
+<%- include('head') %>
+<div class="row">
+  <div class="col-lg-8 mx-auto">
+    <h2>Add Category</h2>
+    <form action="/categories" method="post">
+      <div class="form-group row">
+        <label for="name" class="col-2 col-form-label">Name</label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="name"
+            id="name"
+            name="name"
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mb-5">Add Category</button>
+    </form>
+  </div>
+</div>
+<script>
+  const category = document.getElementById("category");
+  const subcategoryDropdown = document.getElementById("subcategory");
+
+  category.addEventListener("change", function () {
+    let categoryId = this.value;
+
+    fetch(`/categories/${categoryId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        subcategoryDropdown.innerHTML = "";
+
+        // Populate subcategory dropdown with fetched data
+        data.subcategories.forEach((subcategory) => {
+          const option = document.createElement("option");
+          option.value = subcategory._id;
+          option.textContent = subcategory.name;
+          subcategoryDropdown.add(option);
+        });
+      });
+  });
+  category.dispatchEvent(new Event("change"));
+</script>
+
+<%-include('footer') %>

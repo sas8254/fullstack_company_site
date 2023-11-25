@@ -2,6 +2,11 @@ const Category = require("../models/Category");
 const Subcategory = require("../models/subCategory");
 
 // Controller functions for categories
+
+exports.getCatForm = (req, res) => {
+  res.render("addCategory");
+};
+
 exports.getAllCategories = async (req, res) => {
   try {
     const categories = await Category.find().populate("subcategories");
@@ -10,7 +15,6 @@ exports.getAllCategories = async (req, res) => {
     res.status(500).json({ error: "Error getting categories" });
   }
 };
-
 
 exports.getCategoryById = async (req, res) => {
   try {
@@ -30,7 +34,7 @@ exports.createCategory = async (req, res) => {
   try {
     const category = new Category(req.body);
     await category.save();
-    res.status(201).json(category);
+    res.redirect("/categories/catForm");
   } catch (error) {
     res.status(400).json({ error: "Error creating the category" });
   }

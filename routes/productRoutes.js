@@ -19,15 +19,22 @@ const upload = multer({ storage });
 
 const router = express.Router();
 
+function isAuthenticated(req, res, next) {
+  if (req.session.admin) {
+    return next();
+  }
+  res.redirect("/auth/login");
+}
+
 router.post(
   "/",
   upload.fields([{ name: "image" }, { name: "pdfFile" }]),
   productController.addProduct
 );
 
-router.get("/add", productController.getAddForm);
+router.get("/add", isAuthenticated, productController.getAddForm);
 
-router.get("/:id/edit", productController.getEditForm);
+router.get("/:id/edit", isAuthenticated, productController.getEditForm);
 
 router.get("/", productController.getAllProducts);
 
@@ -35,11 +42,12 @@ router.get("/:Id", productController.getProduct);
 
 router.patch(
   "/:Id",
+  isAuthenticated,
   upload.fields([{ name: "image" }, { name: "pdfFile" }]),
   productController.editProduct
 );
 
-router.delete("/:Id", productController.deleteProduct);
+router.delete("/:Id", isAuthenticated, productController.deleteProduct);
 
 router.get("/subcat/:Id", productController.getAllProductsOfSubcategory);
 

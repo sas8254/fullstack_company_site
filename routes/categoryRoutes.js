@@ -4,6 +4,7 @@ const categoryController = require("../controllers/categoryController");
 
 // Define category routes
 router.get("/", categoryController.getAllCategories);
+router.get("/catForm", categoryController.getCatForm);
 router.get("/:id", categoryController.getCategoryById);
 router.post("/", categoryController.createCategory);
 router.put("/:id", categoryController.updateCategory);

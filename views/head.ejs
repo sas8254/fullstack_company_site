@@ -46,7 +46,13 @@
                     <li><a href="/products">Products</a></li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/products/add">Add Product</a></li>
-                    <li><a href="/contact">Admin</a></li>
+                    <% if(admin){ %>
+                    <li><a href="/auth/logout">Logout</a></li>
+                    <li><a href="/categories/catForm">Add Categories</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                    <% } %> <% if(!admin){ %>
+                    <li><a href="/auth/login">Admin</a></li>
+                    <% } %>
                   </ul>
                 </nav>
               </div>
@@ -56,3 +62,6 @@
         </div>
       </header>
       <!-- end: Header -->
+    </div>
+  </body>
+</html>

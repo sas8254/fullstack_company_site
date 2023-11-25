@@ -1,0 +1,60 @@
+<%- include('head') %>
+<div class="container-fluid d-flex flex-column">
+  <div class="row align-items-center min-vh-100">
+    <div class="col-md-6 col-lg-4 col-xl-3 mx-auto">
+      <div class="card">
+        <div class="card-body py-5 px-sm-5">
+          <div class="mb-5 text-center">
+            <h6 class="h3 mb-1">Login</h6>
+            <p class="text-muted mb-0">Sign in to your account to continue.</p>
+          </div>
+          <span class="clearfix"></span>
+          <form class="form-validate" action="/auth/login" method="post" >
+            <div class="form-group">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <input
+                  type="username"
+                  class="form-control"
+                  name="username"
+                  placeholder="Enter your username"
+                  required=""
+                />
+                <span class="input-group-text"><i class="icon-user"></i></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="input-group show-hide-password">
+                <input
+                  class="form-control"
+                  name="password"
+                  placeholder="Enter password"
+                  type="password"
+                  required=""
+                />
+                <span class="input-group-text"
+                  ><i
+                    class="icon-eye-off"
+                    aria-hidden="true"
+                    style="cursor: pointer"
+                  ></i
+                ></span>
+              </div>
+            </div>
+            <div class="mt-4">
+              <button
+                type="submit"
+                class="btn btn-primary btn-block btn-primary"
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%-include('footer') %>
