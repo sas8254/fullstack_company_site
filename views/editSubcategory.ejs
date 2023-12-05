@@ -1,0 +1,25 @@
+<%- include('head') %>
+<div class="row">
+  <div class="col-lg-8 mx-auto">
+    <h2>Edit Subcategory</h2>
+    <form action="/subcategories/<%=subcategory._id%>?_method=PATCH" method="post">
+      <div class="form-group row">
+        <label for="name" class="col-2 col-form-label">name</label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="name"
+            id="name"
+            name="name"
+            value="<%=subcategory.name%>"
+            required
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mb-5">Edit Subcategory</button>
+    </form>
+  </div>
+</div>
+
+<%-include('footer') %>

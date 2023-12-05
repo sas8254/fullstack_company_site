@@ -11,6 +11,18 @@ exports.getAllSubcategories = async (req, res) => {
   }
 };
 
+exports.getEditform = async (req, res) => {
+  try {
+    const subcategory = await Subcategory.findById(req.params.id);
+    if (!subcategory) {
+      return res.status(404).json({ error: "subcategory not found" });
+    }
+    res.render("editSubcategory", { subcategory });
+  } catch (error) {
+    res.status(500).json({ error: "Error getting categories" });
+  }
+};
+
 exports.getSubcategoryById = async (req, res) => {
   try {
     const subcategory = await Subcategory.findById(req.params.id);
@@ -35,8 +47,7 @@ exports.createSubcategory = async (req, res) => {
     const category = await Category.findById(categoryId);
     category.subcategories.push(savedSubcategory._id);
     await category.save();
-
-    res.status(201).json(savedSubcategory);
+    res.redirect("/categories/catForm");
   } catch (error) {
     res.status(400).json({ error: "Error creating the subcategory" });
   }
@@ -54,7 +65,7 @@ exports.updateSubcategory = async (req, res) => {
     if (!subcategory) {
       return res.status(404).json({ error: "Subcategory not found" });
     }
-    res.json(subcategory);
+    res.redirect("/categories/all-cats");
   } catch (error) {
     res.status(400).json({ error: "Error updating the subcategory" });
   }
@@ -68,7 +79,7 @@ exports.deleteSubcategory = async (req, res) => {
     }
     await Category.updateMany({}, { $pull: { subcategories: req.params.id } });
 
-    res.json({ message: "Subcategory deleted successfully" });
+    res.status(200).redirect("/categories/all-cats");
   } catch (error) {
     res.status(500).json({ error: "Error deleting the subcategory" });
   }

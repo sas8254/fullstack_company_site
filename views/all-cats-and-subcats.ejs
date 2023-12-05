@@ -1,0 +1,72 @@
+<%- include('head') %>
+
+<div class="heading-text mt-5">
+  <h2 class="fw-light">Categories and subcategories</h2>
+</div>
+<div class="row">
+  <% let i = 0; %>
+  <% for(let category of categories) {%>
+    <% if(i % 2 == 0){ %>
+      <div class="row">
+    <% } %>
+    <div class="col-md-6">
+      <!-- Accordion -->
+      <div class="accordion sidebar sticky-sidebar">
+        <div class="ac-item">
+          <h5 class="ac-title"><%= category.name %> 
+            <a href="/categories/<%=category._id%>/edit" class="card-link btn btn-sm btn-info my-3 ms-3" onclick="event.stopPropagation();">Edit</a>
+            <form class="d-inline" action="/categories/<%=category._id%>?_method=DELETE" method="post">
+              <button class="btn btn-sm btn-danger ms-2" onclick="event.stopPropagation();">Delete</button>
+            </form>
+          </h5>
+          <div class="ac-content">
+            <% for(let subcategory of category.subcategories){ %>
+            <li>
+              <a href="/products/subcat/<%=subcategory._id%>"><%=subcategory.name %></a>
+              <a href="/subcategories/<%=subcategory._id%>/edit" class="card-link btn btn-sm btn-info my-3 ms-3">Edit</a>
+              <form class="d-inline" action="/subcategories/<%=subcategory._id%>?_method=DELETE" method="post">
+                <button class="btn btn-sm btn-danger ms-2">Delete</button>
+              </form>
+            </li>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <!-- end: Accordion -->
+    </div>
+    <% if(i % 2 != 0){ %>
+      </div>
+    <% } %>
+    <% i++; %>
+  <% } %>
+  <% if(i % 2 != 0){ %>
+    </div>
+  <% } %>
+</div>
+
+<%-include('footer') %>
+<style>
+  .ac-content > li > a {
+    font-weight: 500;
+    color: var(--bs-dark);
+  }
+  .ac-content > li > a:hover {
+    color: var(--bs-primary);
+  }
+
+  .ac-content {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .card-body > .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-body > .card-text {
+    font-size: 1rem;
+  }
+</style>

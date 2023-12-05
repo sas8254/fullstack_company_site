@@ -17,6 +17,7 @@
             id="title"
             name="title"
             value="<%=product.title%>"
+            required
           />
         </div>
       </div>
@@ -28,10 +29,8 @@
           <select class="form-select" name="category" id="category" required>
             <option value="#">Select Category</option>
             <% if(categories){%> <% for(let category of categories){ %>
-            <option value="<%=category._id%>">
-              <%=category.name%>
-            </option>
-            <% } %> <% } %>
+            <option value="<%=category._id%>"><%=category.name%></option>
+            <% } %> <% } %> required
           </select>
         </div>
       </div>
@@ -47,11 +46,10 @@
             name="subcategory"
             required
           >
-            <% if(typeof subcategories !== 'undefined'){%>
-            <% for(let subcategory of subcategories){ %>
+            <% if(typeof subcategories !== 'undefined'){%> <% for(let
+            subcategory of subcategories){ %>
             <option value="<%=subcategory._id%>"><%=subcategory.name%></option>
-            <% } %> 
-            <% } %>
+            <% } %> <% } %>
           </select>
         </div>
       </div>

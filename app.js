@@ -7,6 +7,7 @@ const productRoutes = require("./routes/productRoutes");
 const subcategoryRoutes = require("./routes/subcategoryRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const authRoutes = require("./routes/authRoutes");
+const emailRoutes = require("./controllers/mailer");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -49,6 +50,7 @@ app.use("/products", productRoutes);
 app.use("/subcategories", subcategoryRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/auth", authRoutes);
+app.use("/mail", emailRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -59,5 +61,7 @@ app.get("/contact", (req, res) => {
 
 const PORT = process.env.PORT || 3200;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(
+    `Server running on port ${PORT} *********************************************************************`
+  );
 });

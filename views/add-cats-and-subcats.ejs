@@ -1,0 +1,59 @@
+<%- include('head') %>
+<div class="row">
+  <div class="col-lg-8 mx-auto">
+    <h2>Add Category</h2>
+    <form action="/categories" method="post">
+      <div class="form-group row">
+        <label for="name" class="col-2 col-form-label">Category name</label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="name"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mb-5">Add Category</button>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8 mx-auto">
+    <h2>Add Sub-Category</h2>
+    <form action="/subcategories" method="post">
+      <div class="form-group row">
+        <label for="category" class="col-2 col-form-label"
+          >Select Category for Sub-Category</label
+        >
+        <div class="col-10">
+          <select class="form-select" name="categoryId" id="category" required>
+            <option value="#">Select Category</option>
+            <% if(categories){%> <% for(let category of categories){ %>
+            <option value="<%=category._id%>"><%=category.name%></option>
+            <% } %> <% } %> 
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="name" class="col-2 col-form-label">Subcategory Name</label>
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="name"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mb-5">Add Sub-Category</button>
+    </form>
+  </div>
+</div>
+
+
+<%-include('footer') %>
